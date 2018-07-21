@@ -1,6 +1,7 @@
 class program {
     program () {
     	move();
+    	move();
         while(nextToABeeper() || (frontIsClear() && rightIsClear()))
         {
             while(nextToABeeper() || (frontIsClear() && rightIsClear()))
