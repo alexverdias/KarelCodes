@@ -1,0 +1,74 @@
+class program {
+
+define mediaVuelta(){
+    turnleft();
+    turnleft();
+}
+
+define llegarPared(){
+    while(frontIsClear())
+        move();
+}
+
+define recogerTodos(){
+    while(nextToABeeper())
+        pickbeeper();
+}
+
+define dejarTodos(){
+    while(anyBeepersInBeeperBag)
+        putbeeper();
+}
+
+define amontonarColumna(){
+    if(nextToABeeper())
+    {
+        pickbeeper();
+        amontonarColumna();
+        putbeeper();
+    }
+    else
+    {
+        if(frontIsClear()){
+            move();
+            if(nextToABeeper())
+                amontonarColumna();
+            else
+            {
+                regreso();
+            }
+        }
+        else
+        {
+            regreso();
+        }
+    }
+}
+
+define recorrerColumnas(){
+    amontonarColumna();
+    if(frontIsClear())
+    {
+        move();
+        turnleft();
+        if(nextToABeeper())
+            recorrerColumnas();
+
+    }
+}
+
+define regreso()
+{
+    mediaVuelta();
+    llegarPared();
+
+    turnleft();
+}
+
+
+program() {
+    recorrerColumnas();
+    turnoff();
+}
+
+}
